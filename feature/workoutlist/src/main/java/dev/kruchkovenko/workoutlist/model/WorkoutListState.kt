@@ -1,13 +1,13 @@
 package dev.kruchkovenko.workoutlist.model
 
-sealed class WorkoutState {
-    data object Empty : WorkoutState()
-    data object Loading : WorkoutState()
-    data class Error(val message: String) : WorkoutState()
+sealed class WorkoutListState {
+    data object Empty : WorkoutListState()
+    data object Loading : WorkoutListState()
+    data class Error(val message: String) : WorkoutListState()
     data class Display(
         val workouts: List<WorkoutUI>,
         val displayWorkouts: List<WorkoutUI>,
         val searchText: String?,
         val workoutType: WorkoutTypeUI,
-    ) : WorkoutState()
+    ) : WorkoutListState()
 }
