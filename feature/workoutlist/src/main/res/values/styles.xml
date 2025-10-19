@@ -1,6 +1,16 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="Workout.Loader" parent="Widget.AppCompat.ProgressBar">
+        <item name="android:indeterminateTint">?attr/colorOnSurface</item>
+    </style>
+
+    <style name="Workout.TextField" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">18sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+    </style>
+
     <style name="Workout.SearchField" parent="Widget.AppCompat.EditText">
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawableStart">@android:drawable/ic_menu_search</item>
