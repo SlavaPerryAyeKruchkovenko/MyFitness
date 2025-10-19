@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <attr name="colorHint" format="color" />
+    <attr name="colorCard" format="color" />
+    <attr name="colorTextSecondary" format="color" />
+    <attr name="colorChipBackground" format="color" />
+    <attr name="colorChipText" format="color" />
+    <attr name="colorChipBorder" format="color" />
+</resources>
