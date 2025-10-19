@@ -7,5 +7,6 @@
         <item name="colorHint">@color/light_hint</item>
         <item name="colorChipBackground">@color/light_chip_bg</item>
         <item name="colorChipText">@color/light_chip_text</item>
+        <item name="colorChipBorder">@color/dark_card</item>
     </style>
 </resources>

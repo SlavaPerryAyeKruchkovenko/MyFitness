@@ -8,5 +8,6 @@
         <item name="colorHint">@color/dark_hint</item>
         <item name="colorChipBackground">@color/dark_chip_bg</item>
         <item name="colorChipText">@color/dark_chip_text</item>
+        <item name="colorChipBorder">@color/light_card</item>
     </style>
 </resources>

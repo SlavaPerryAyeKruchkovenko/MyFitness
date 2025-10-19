@@ -5,4 +5,5 @@
     <attr name="colorTextSecondary" format="color" />
     <attr name="colorChipBackground" format="color" />
     <attr name="colorChipText" format="color" />
+    <attr name="colorChipBorder" format="color" />
 </resources>

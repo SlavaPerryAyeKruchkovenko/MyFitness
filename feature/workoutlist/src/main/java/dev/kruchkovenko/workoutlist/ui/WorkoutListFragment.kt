@@ -18,6 +18,7 @@ import dev.kruchkovenko.workoutlist.model.WorkoutListState
 import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
 import dev.kruchkovenko.workoutlist.model.WorkoutUI
 import dev.kruchkovenko.workoutlist.presentation.WorkoutListViewModel
+import dev.kruchkovenko.workoutlist.ui.decorator.VerticalSpaceItemDecoration
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showEmpty
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showError
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showLoading
@@ -60,6 +61,7 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     private fun initWorkerRecycle() = with(binding.workouts) {
         adapter = this@WorkoutListFragment.adapter
         layoutManager = LinearLayoutManager(context)
+        addItemDecoration(VerticalSpaceItemDecoration(12,requireContext()))
     }
 
     private fun initSearchBar() = with(binding.searchBar) {
