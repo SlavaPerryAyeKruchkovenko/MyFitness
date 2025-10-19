@@ -13,17 +13,16 @@ object CoreModule {
         single<OkHttpClient> {
             OkHttpClient.Builder()
                 .followRedirects(true)
-                .protocols(listOf(Protocol.HTTP_1_0))
+                .protocols(listOf(Protocol.HTTP_1_1))
                 .connectTimeout(60, TimeUnit.SECONDS)
                 .readTimeout(60, TimeUnit.SECONDS)
                 .writeTimeout(60, TimeUnit.SECONDS)
                 .build()
-
         }
         single<Retrofit> {
             Retrofit.Builder()
                 .baseUrl(getProperty<String>(Constants.BASE_URL))
-                .addConverterFactory(get<GsonConverterFactory>())
+                .addConverterFactory(GsonConverterFactory.create())
                 .client(get())
                 .build()
         }
