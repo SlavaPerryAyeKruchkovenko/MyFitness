@@ -5,6 +5,8 @@ import dev.kruchkovenko.data.network.WorkoutApi
 import dev.kruchkovenko.domain.model.DataState
 import dev.kruchkovenko.domain.model.Workout
 import dev.kruchkovenko.domain.repository.WorkoutRepository
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.withContext
 
 class WorkoutRepositoryImpl(
     private val api: WorkoutApi,
@@ -12,8 +14,10 @@ class WorkoutRepositoryImpl(
 ) : WorkoutRepository {
     override suspend fun getWorkouts(): DataState<List<Workout>> {
         return runCatching {
-            val result = api.getWorkouts()
-            result.body()?.map(mapper::fromWorkoutResponseToWorkout) ?: emptyList()
+            withContext(Dispatchers.IO) {
+                val result = api.getWorkouts()
+                result.body()?.map(mapper::fromWorkoutResponseToWorkout) ?: emptyList()
+            }
         }.fold(
             onSuccess = { DataState.Success(it) },
             onFailure = { DataState.Error(it) }
