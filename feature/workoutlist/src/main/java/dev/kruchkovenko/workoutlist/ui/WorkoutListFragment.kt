@@ -23,6 +23,11 @@ import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showEmpty
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showError
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showLoading
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showWorkouts
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.Job
+import kotlinx.coroutines.delay
+import kotlinx.coroutines.launch
 import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WorkoutListFragment : Fragment(), WorkoutListener {
@@ -30,6 +35,7 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     private lateinit var binding: FragmentWorkoutListBinding
     private val viewModel by viewModel<WorkoutListViewModel>()
     private val adapter = WorkoutListAdapter(this)
+    private var searchJob: Job? = null
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -61,13 +67,17 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     private fun initWorkerRecycle() = with(binding.workouts) {
         adapter = this@WorkoutListFragment.adapter
         layoutManager = LinearLayoutManager(context)
-        addItemDecoration(VerticalSpaceItemDecoration(12,requireContext()))
+        addItemDecoration(VerticalSpaceItemDecoration(12, requireContext()))
     }
 
     private fun initSearchBar() = with(binding.searchBar) {
         addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                viewModel.obtainEvent(WorkoutListEvent.Search(s.toString()))
+                searchJob?.cancel()
+                searchJob = CoroutineScope(Dispatchers.Main).launch {
+                    delay(2000)
+                    viewModel.obtainEvent(WorkoutListEvent.Search(s.toString()))
+                }
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
