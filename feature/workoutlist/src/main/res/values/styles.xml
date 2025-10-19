@@ -1,6 +1,22 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="WorkoutChip" parent="Widget.MaterialComponents.Chip.Choice">
+        <item name="android:indeterminateTint">?attr/colorOnSurface</item>
+        <item name="android:layout_marginEnd">4dp</item>
+        <item name="android:checkable">true</item>
+        <item name="android:textAppearance">?attr/textAppearanceBodyMedium</item>
+        <item name="android:textColor">?attr/colorOnSurface</item>
+        <item name="android:backgroundTint">?attr/colorChipBackground</item>
+        <item name="android:ellipsize">end</item>
+        <item name="android:maxLines">1</item>
+        <item name="android:paddingStart">12dp</item>
+        <item name="android:paddingEnd">12dp</item>
+        <item name="chipStrokeColor">?attr/colorChipBorder</item>
+        <item name="chipStrokeWidth">1dp</item>
+        <item name="chipCornerRadius">16dp</item>
+    </style>
+
     <style name="Workout.Loader" parent="Widget.AppCompat.ProgressBar">
         <item name="android:indeterminateTint">?attr/colorOnSurface</item>
     </style>
