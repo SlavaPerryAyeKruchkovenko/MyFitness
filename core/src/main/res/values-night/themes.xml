@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="Base.Theme.MyFitness" parent="Theme.Material3.DayNight.NoActionBar">
+        <item name="colorSurface">@color/dark_bg</item>
+        <item name="colorOnSurface">@color/dark_text_primary</item>
+        <item name="colorCard">@color/dark_card</item>
+        <item name="colorTextSecondary">@color/dark_text_secondary</item>
+        <item name="colorHint">@color/dark_hint</item>
+        <item name="colorChipBackground">@color/dark_chip_bg</item>
+        <item name="colorChipText">@color/dark_chip_text</item>
+    </style>
+</resources>
