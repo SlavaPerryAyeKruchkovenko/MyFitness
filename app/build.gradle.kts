@@ -64,6 +64,10 @@ dependencies {
     implementation(libs.koin.koin.core)
     implementation(libs.koin.android)
 
+    // Navigation
+    implementation(libs.androidx.navigation.fragment.ktx)
+    implementation(libs.androidx.navigation.ui.ktx)
+
     implementation(project(":core"))
     implementation(project(":domain"))
     implementation(project(":data"))

@@ -5,7 +5,7 @@
     android:id="@+id/workoutListRoot"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="?android:attr/colorSurface"
+    android:background="?attr/colorSurface"
     android:orientation="vertical"
     android:padding="8dp">
 
@@ -52,7 +52,7 @@
         tools:listitem="@layout/item_workout" />
 
     <ProgressBar
-        android:id="@+id/centerLoader"
+        android:id="@+id/loader"
         style="@style/Workout.Loader"
         android:layout_width="@dimen/loader_size"
         android:layout_height="@dimen/loader_size"
@@ -64,7 +64,7 @@
         tools:visibility="visible" />
 
     <androidx.appcompat.widget.AppCompatTextView
-        android:id="@+id/title"
+        android:id="@+id/error_text"
         style="@style/Workout.TextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
