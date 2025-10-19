@@ -40,4 +40,16 @@ dependencies {
     testImplementation(libs.junit)
     androidTestImplementation(libs.androidx.junit)
     androidTestImplementation(libs.androidx.espresso.core)
+
+    // Koin Di
+    implementation(libs.koin.koin.core)
+    implementation(libs.koin.android)
+
+    // Network
+    implementation(libs.retrofit)
+
+    //Serializer
+    implementation(libs.gson)
+
+    implementation(project(":domain"))
 }
