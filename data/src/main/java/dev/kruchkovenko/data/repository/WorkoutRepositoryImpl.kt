@@ -20,7 +20,10 @@ class WorkoutRepositoryImpl(
             }
         }.fold(
             onSuccess = { DataState.Success(it) },
-            onFailure = { DataState.Error(it) }
+            onFailure = {
+                it.printStackTrace()
+                DataState.Error(it)
+            }
         )
     }
 }

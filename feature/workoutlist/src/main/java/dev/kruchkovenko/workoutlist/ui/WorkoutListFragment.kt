@@ -8,8 +8,8 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.viewModels
 import androidx.lifecycle.Observer
+import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
@@ -22,11 +22,12 @@ import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showEmpty
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showError
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showLoading
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showWorkouts
+import org.koin.androidx.viewmodel.ext.android.viewModel
 
 class WorkoutListFragment : Fragment(), WorkoutListener {
 
     private lateinit var binding: FragmentWorkoutListBinding
-    private val viewModel by viewModels<WorkoutListViewModel>()
+    private val viewModel by viewModel<WorkoutListViewModel>()
     private val adapter = WorkoutListAdapter(this)
 
     override fun onCreateView(
@@ -40,7 +41,7 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        binding.workouts.adapter = adapter
+        initWorkerRecycle()
 
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
@@ -50,10 +51,19 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
                 is WorkoutListState.Error -> binding.showError(state.message)
             }
         })
-
         viewModel.obtainEvent(WorkoutListEvent.Init)
 
-        binding.searchBar.addTextChangedListener(object : TextWatcher {
+        initSearchBar()
+        setupChips()
+    }
+
+    private fun initWorkerRecycle() = with(binding.workouts) {
+        adapter = this@WorkoutListFragment.adapter
+        layoutManager = LinearLayoutManager(context)
+    }
+
+    private fun initSearchBar() = with(binding.searchBar) {
+        addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 viewModel.obtainEvent(WorkoutListEvent.Search(s.toString()))
             }
@@ -61,8 +71,6 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {}
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {}
         })
-
-        setupChips()
     }
 
     private fun setupChips() {
