@@ -1,4 +1,4 @@
-package dev.kruchkovenko.domain.usecase
+package dev.kruchkovenko.domain.usecase.`interface`
 
 import dev.kruchkovenko.domain.model.DataState
 import dev.kruchkovenko.domain.model.Workout
