@@ -6,5 +6,5 @@ import dev.kruchkovenko.domain.model.Workout
 
 interface WorkoutRepository {
     suspend fun getWorkouts(): DataState<List<Workout>>
-    suspend fun getVideo(id: Int): DataState<Video>
+    suspend fun getVideo(id: Int): DataState<Video?>
 }
