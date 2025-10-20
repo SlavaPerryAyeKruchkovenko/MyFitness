@@ -1,7 +1,8 @@
 package dev.kruchkovenko.workoutlist.mapper
 
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.domain.model.Workout
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
+import dev.kruchkovenko.domain.model.WorkoutType
 import dev.kruchkovenko.workoutlist.model.WorkoutUI
 
 class WorkoutMapperImpl : WorkoutMapper {
@@ -11,7 +12,11 @@ class WorkoutMapperImpl : WorkoutMapper {
             title = title,
             description = description,
             duration = duration,
-            type = WorkoutTypeUI.fromWorkType(type)
+            type = fromWorkoutTypeToWorkoutTypeUI(type)
         )
+    }
+
+    override fun fromWorkoutTypeToWorkoutTypeUI(type: WorkoutType): WorkoutTypeUI {
+        return WorkoutTypeUI.entries.first { it.name == type.name }
     }
 }

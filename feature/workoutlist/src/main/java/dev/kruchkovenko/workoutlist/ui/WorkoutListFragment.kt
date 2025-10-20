@@ -15,7 +15,7 @@ import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.workoutlist.model.WorkoutUI
 import dev.kruchkovenko.workoutlist.presentation.WorkoutListViewModel
 import dev.kruchkovenko.workoutlist.ui.decorator.VerticalSpaceItemDecoration

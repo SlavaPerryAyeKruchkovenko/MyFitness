@@ -10,7 +10,7 @@ import dev.kruchkovenko.domain.usecase.GetWorkoutsUseCase
 import dev.kruchkovenko.workoutlist.mapper.WorkoutMapper
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import kotlinx.coroutines.launch
 
 class WorkoutListViewModel(

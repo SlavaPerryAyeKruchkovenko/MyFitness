@@ -1,9 +1,5 @@
 <resources>
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="search">Search</string>
-    <string name="training">тренировка</string>
-    <string name="ether">эфир</string>
-    <string name="complex">комплекс</string>
-    <string name="all">все</string>
     <string name="training_not_found">Тренировки не найдены :(</string>
 </resources>

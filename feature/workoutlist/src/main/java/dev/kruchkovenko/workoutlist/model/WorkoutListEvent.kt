@@ -1,5 +1,6 @@
 package dev.kruchkovenko.workoutlist.model
 
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.core.presenter.Event
 
 sealed class WorkoutListEvent : Event() {
