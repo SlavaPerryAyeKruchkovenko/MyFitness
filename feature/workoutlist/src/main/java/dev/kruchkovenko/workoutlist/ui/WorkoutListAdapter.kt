@@ -6,6 +6,7 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
+import dev.kruchkovenko.core.R
 import dev.kruchkovenko.workoutlist.databinding.ItemWorkoutBinding
 import dev.kruchkovenko.core.model.WorkoutUI
 
@@ -30,9 +31,13 @@ class WorkoutListAdapter(
     ) : RecyclerView.ViewHolder(binding.root) {
 
         fun bind(item: WorkoutUI) = with(binding) {
+            val workoutType = context.resources.getString(item.type.text)
             title.text = item.title
-            type.text = context.resources.getText(item.type.text)
-            duration.text = item.duration
+            type.text = context.resources.getString(R.string.workout_type, workoutType)
+            duration.text = when (val duration = item.duration.toIntOrNull()) {
+                null -> item.duration
+                else -> context.resources.getString(R.string.workout_duration, duration)
+            }
             if (item.description.isNullOrBlank()) {
                 description.visibility = android.view.View.GONE
             } else {
