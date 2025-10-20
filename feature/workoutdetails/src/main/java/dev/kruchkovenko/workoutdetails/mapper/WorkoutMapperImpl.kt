@@ -17,7 +17,7 @@ class WorkoutMapperImpl : WorkoutMapper {
 
     override fun fromWorkoutUIToWorkoutDetailsUI(
         workout: WorkoutUI,
-        videoUI: WorkoutVideoUI
+        videoUI: WorkoutVideoUI?
     ): WorkoutDetailsUI = with(workout) {
         WorkoutDetailsUI(
             id = id,

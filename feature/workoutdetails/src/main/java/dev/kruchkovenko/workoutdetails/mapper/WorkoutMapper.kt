@@ -10,6 +10,6 @@ interface WorkoutMapper {
     fun fromVideoToVideoUI(video: Video): WorkoutVideoUI
     fun fromWorkoutUIToWorkoutDetailsUI(
         workout: WorkoutUI,
-        videoUI: WorkoutVideoUI
+        videoUI: WorkoutVideoUI?
     ): WorkoutDetailsUI
 }

@@ -53,7 +53,9 @@ class WorkoutDetailsViewModel(
         val video = getVideoUseCase(workout.id)
         _state.value = when (video) {
             is DataState.Success -> {
-                val videoUI = mapper.fromVideoToVideoUI(video.result)
+                val videoUI = video.result?.let {
+                    mapper.fromVideoToVideoUI(it)
+                }
                 val workoutDetailsUI = mapper.fromWorkoutUIToWorkoutDetailsUI(workout, videoUI)
                 WorkoutDetailsState.Display(
                     workout = workoutDetailsUI

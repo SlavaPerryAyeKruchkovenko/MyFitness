@@ -8,5 +8,5 @@ data class WorkoutDetailsUI(
     val description: String?,
     val duration: String,
     val type: WorkoutTypeUI,
-    val video: WorkoutVideoUI,
+    val video: WorkoutVideoUI?,
 )
