@@ -47,6 +47,9 @@ dependencies {
     implementation(libs.koin.koin.core)
     implementation(libs.koin.android)
 
+    // ExoPlayer
+    implementation(libs.exoplayer)
+
     implementation(project(":core"))
     implementation(project(":domain"))
 }
