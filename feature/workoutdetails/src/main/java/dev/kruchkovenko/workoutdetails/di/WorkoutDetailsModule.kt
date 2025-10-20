@@ -8,14 +8,15 @@ import org.koin.core.module.dsl.viewModel
 import org.koin.dsl.module
 
 object WorkoutDetailsModule {
-    val workoutListModule = module {
+    val workoutDetailsModule = module {
         single<WorkoutMapper> {
             WorkoutMapperImpl()
         }
         viewModel<WorkoutDetailsViewModel> {
             WorkoutDetailsViewModel(
                 baseState = WorkoutDetailsState.Loading,
-                mapper = get()
+                mapper = get(),
+                getVideoUseCase = get()
             )
         }
     }
