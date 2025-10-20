@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import androidx.recyclerview.widget.RecyclerView
 import dev.kruchkovenko.workoutlist.databinding.ItemWorkoutBinding
-import dev.kruchkovenko.workoutlist.model.WorkoutUI
+import dev.kruchkovenko.core.model.WorkoutUI
 
 class WorkoutListAdapter(
     private val listener: WorkoutListener

@@ -13,7 +13,6 @@ jetbrainsKotlinJvm = "2.0.21"
 koin = "4.1.1"
 retrofit = "3.0.0"
 gson = "3.0.0"
-roomCompiler = "2.8.2"
 navigationFragmentKtx = "2.9.5"
 navigationUiKtx = "2.9.5"
 
@@ -34,6 +33,7 @@ androidx-navigation-fragment-ktx = { group = "androidx.navigation", name = "navi
 androidx-navigation-ui-ktx = { group = "androidx.navigation", name = "navigation-ui-ktx", version.ref = "navigationUiKtx" }
 
 [plugins]
+androidx-navigation-safe-args = { id = "androidx.navigation.safeargs.kotlin", version.ref = "navigationFragmentKtx" }
 android-application = { id = "com.android.application", version.ref = "agp" }
 kotlin-android = { id = "org.jetbrains.kotlin.android", version.ref = "kotlin" }
 android-library = { id = "com.android.library", version.ref = "agp" }

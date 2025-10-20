@@ -3,20 +3,21 @@ package dev.kruchkovenko.workoutlist.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
+import dev.kruchkovenko.core.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutUI
 import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.core.model.WorkoutTypeUI
-import dev.kruchkovenko.workoutlist.model.WorkoutUI
+import dev.kruchkovenko.workoutlist.navigation.WorkoutListNavigator
 import dev.kruchkovenko.workoutlist.presentation.WorkoutListViewModel
 import dev.kruchkovenko.workoutlist.ui.decorator.VerticalSpaceItemDecoration
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showEmpty
@@ -28,7 +29,9 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class WorkoutListFragment : Fragment(), WorkoutListener {
 
@@ -36,6 +39,7 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     private val viewModel by viewModel<WorkoutListViewModel>()
     private val adapter = WorkoutListAdapter(this)
     private var searchJob: Job? = null
+    private val navigator: WorkoutListNavigator by inject { parametersOf(findNavController()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -109,6 +113,6 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     }
 
     override fun onWorkoutCardClick(workout: WorkoutUI) {
-        Log.d(WorkoutListFragment::class.simpleName, workout.id.toString())
+        navigator.openWorkoutDetails(workout)
     }
 }
