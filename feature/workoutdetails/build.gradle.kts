@@ -49,6 +49,8 @@ dependencies {
 
     // ExoPlayer
     implementation(libs.exoplayer)
+    implementation(libs.androidx.media3.media3.ui)
+    implementation(libs.androidx.media3.exoplayer.dash)
 
     implementation(project(":core"))
     implementation(project(":domain"))

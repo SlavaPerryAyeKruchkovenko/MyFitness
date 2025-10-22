@@ -17,16 +17,6 @@
         <item name="chipCornerRadius">16dp</item>
     </style>
 
-    <style name="Workout.Loader" parent="Widget.AppCompat.ProgressBar">
-        <item name="android:indeterminateTint">?attr/colorOnSurface</item>
-    </style>
-
-    <style name="Workout.TextField" parent="Widget.AppCompat.TextView">
-        <item name="android:textSize">18sp</item>
-        <item name="android:textStyle">bold</item>
-        <item name="android:textColor">?attr/colorOnSurface</item>
-    </style>
-
     <style name="Workout.SearchField" parent="Widget.AppCompat.EditText">
         <item name="android:gravity">center_vertical</item>
         <item name="android:drawableStart">@android:drawable/ic_menu_search</item>
@@ -58,6 +48,7 @@
     </style>
 
     <style name="WorkoutCard.Description" parent="Widget.AppCompat.TextView">
+        <item name="android:textSize">14sp</item>
         <item name="android:ellipsize">end</item>
         <item name="android:maxLines">2</item>
         <item name="android:textColor">?attr/colorOnSurface</item>

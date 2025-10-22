@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     android:background="?attr/colorSurface"
     android:orientation="vertical"
-    android:padding="8dp">
+    android:padding="@dimen/fragment_padding">
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/search_bar"
@@ -53,7 +53,7 @@
 
     <ProgressBar
         android:id="@+id/loader"
-        style="@style/Workout.Loader"
+        style="@style/Loader"
         android:layout_width="@dimen/loader_size"
         android:layout_height="@dimen/loader_size"
         android:visibility="gone"
@@ -65,7 +65,7 @@
 
     <androidx.appcompat.widget.AppCompatTextView
         android:id="@+id/error_text"
-        style="@style/Workout.TextField"
+        style="@style/TextField"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:visibility="gone"

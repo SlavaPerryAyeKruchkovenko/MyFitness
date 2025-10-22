@@ -55,6 +55,14 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
 
         initWorkerRecycle()
 
+        observeState()
+        viewModel.obtainEvent(WorkoutListEvent.Init)
+
+        initSearchBar()
+        setupChips()
+    }
+
+    private fun observeState() {
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is WorkoutListState.Loading -> binding.showLoading()
@@ -63,10 +71,6 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
                 is WorkoutListState.Error -> binding.showError(state.message)
             }
         })
-        viewModel.obtainEvent(WorkoutListEvent.Init)
-
-        initSearchBar()
-        setupChips()
     }
 
     private fun initWorkerRecycle() = with(binding.workouts) {
