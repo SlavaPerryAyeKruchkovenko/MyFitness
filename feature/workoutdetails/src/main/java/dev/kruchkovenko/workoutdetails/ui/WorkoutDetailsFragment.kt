@@ -7,6 +7,7 @@ import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.media3.exoplayer.ExoPlayer
+import dev.kruchkovenko.core.extension.BundleExtension.parsable
 import dev.kruchkovenko.core.model.WorkoutUI
 import dev.kruchkovenko.workoutdetails.databinding.FragmentWorkoutDetailsBinding
 import dev.kruchkovenko.workoutdetails.model.WorkoutDetailsEvent
@@ -39,7 +40,7 @@ class WorkoutDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initBackButton()
         observeState()
-        val workout = requireArguments().getParcelable<WorkoutUI>("workout")
+        val workout = requireArguments().parsable<WorkoutUI>("workout")
         workout?.also {
             viewModel.obtainEvent(WorkoutDetailsEvent.Init(it))
         }
