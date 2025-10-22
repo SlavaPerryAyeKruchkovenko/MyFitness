@@ -1,5 +1,8 @@
 package dev.kruchkovenko.workoutlist.model
 
+import dev.kruchkovenko.core.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutUI
+
 sealed class WorkoutListState {
     data object Empty : WorkoutListState()
     data object Loading : WorkoutListState()

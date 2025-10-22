@@ -11,5 +11,18 @@
         android:label="WorkoutListFragment"
         tools:layout="@layout/fragment_workout_list">
 
+        <action
+            android:id="@+id/action_workoutListFragment_to_workoutDetailsFragment"
+            app:destination="@id/workoutDetailsFragment" />
+    </fragment>
+
+    <fragment
+        android:id="@+id/workoutDetailsFragment"
+        android:name="dev.kruchkovenko.workoutdetails.ui.WorkoutDetailsFragment"
+        android:label="WorkoutDetailsFragment"
+        tools:layout="@layout/fragment_workout_details">
+        <argument
+            android:name="workout"
+            app:argType="dev.kruchkovenko.core.model.WorkoutUI" />
     </fragment>
 </navigation>

@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:padding="@dimen/fragment_padding">
+
+    <androidx.appcompat.widget.AppCompatImageButton
+        android:id="@+id/back_button"
+        style="@style/WorkoutDetails.BackButton"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ScrollView
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/back_button">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/title"
+                style="@style/WorkoutDetails.Title"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                tools:text="Зарядка 6. Улучшаем осанку" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:orientation="horizontal">
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/duration"
+                    style="@style/WorkoutDetails.Field"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    tools:text="45 минут" />
+
+                <androidx.appcompat.widget.AppCompatTextView
+                    android:id="@+id/type"
+                    style="@style/WorkoutDetails.Field"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    tools:text="Тип: Кардио" />
+            </LinearLayout>
+
+            <androidx.appcompat.widget.AppCompatTextView
+                android:id="@+id/description"
+                style="@style/WorkoutDetails.Description"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                tools:text="Укрепляем позвоночник для красивой осанки. Также уделим внимание коленям и голеностопу" />
+
+            <androidx.media3.ui.PlayerView
+                android:id="@+id/player"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:layout_marginTop="24dp"
+                app:keep_content_on_player_reset="true"
+                app:resize_mode="fit"
+                app:show_timeout="1000"
+                app:surface_type="surface_view"
+                app:use_controller="true" />
+
+        </LinearLayout>
+    </ScrollView>
+
+    <ProgressBar
+        android:id="@+id/loader"
+        style="@style/Loader"
+        android:layout_width="@dimen/loader_size"
+        android:layout_height="@dimen/loader_size"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:visibility="visible" />
+
+    <androidx.appcompat.widget.AppCompatTextView
+        android:id="@+id/error_text"
+        style="@style/TextField"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Ошибка"
+        tools:visibility="visible" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+

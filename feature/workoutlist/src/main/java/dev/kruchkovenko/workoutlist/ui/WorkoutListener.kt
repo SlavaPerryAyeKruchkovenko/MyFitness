@@ -1,6 +1,6 @@
 package dev.kruchkovenko.workoutlist.ui
 
-import dev.kruchkovenko.workoutlist.model.WorkoutUI
+import dev.kruchkovenko.core.model.WorkoutUI
 
 interface WorkoutListener {
     fun onWorkoutCardClick(workout: WorkoutUI)

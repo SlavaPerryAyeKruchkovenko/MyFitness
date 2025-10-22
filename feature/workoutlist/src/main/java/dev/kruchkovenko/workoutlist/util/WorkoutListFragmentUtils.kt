@@ -6,7 +6,7 @@ import com.google.android.material.chip.Chip
 import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.workoutlist.ui.WorkoutListAdapter
 
 internal object WorkoutListFragmentUtils {

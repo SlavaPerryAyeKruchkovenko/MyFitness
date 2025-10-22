@@ -6,11 +6,11 @@ import androidx.lifecycle.viewModelScope
 import dev.kruchkovenko.core.presenter.EventHandler
 import dev.kruchkovenko.core.utils.ExceptionHandler
 import dev.kruchkovenko.domain.model.DataState
-import dev.kruchkovenko.domain.usecase.GetWorkoutsUseCase
+import dev.kruchkovenko.domain.usecase.`interface`.GetWorkoutsUseCase
 import dev.kruchkovenko.workoutlist.mapper.WorkoutMapper
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutTypeUI
 import kotlinx.coroutines.launch
 
 class WorkoutListViewModel(

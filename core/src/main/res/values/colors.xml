@@ -15,5 +15,7 @@
     <color name="dark_hint">#B0B0B0</color>
     <color name="dark_chip_bg">#333333</color>
     <color name="dark_chip_text">#FFFFFF</color>
+
+    <color name="transparent">#0000</color>
 </resources>
 

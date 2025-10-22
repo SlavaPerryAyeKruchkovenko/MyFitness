@@ -3,20 +3,21 @@ package dev.kruchkovenko.workoutlist.ui
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
+import androidx.navigation.fragment.findNavController
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
-import dev.kruchkovenko.workoutlist.R
+import dev.kruchkovenko.core.model.WorkoutTypeUI
+import dev.kruchkovenko.core.model.WorkoutUI
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
+import dev.kruchkovenko.workoutlist.databinding.ItemChipFilterBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
-import dev.kruchkovenko.workoutlist.model.WorkoutTypeUI
-import dev.kruchkovenko.workoutlist.model.WorkoutUI
+import dev.kruchkovenko.workoutlist.navigation.WorkoutListNavigator
 import dev.kruchkovenko.workoutlist.presentation.WorkoutListViewModel
 import dev.kruchkovenko.workoutlist.ui.decorator.VerticalSpaceItemDecoration
 import dev.kruchkovenko.workoutlist.util.WorkoutListFragmentUtils.showEmpty
@@ -28,20 +29,24 @@ import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.Job
 import kotlinx.coroutines.delay
 import kotlinx.coroutines.launch
+import org.koin.android.ext.android.inject
 import org.koin.androidx.viewmodel.ext.android.viewModel
+import org.koin.core.parameter.parametersOf
 
 class WorkoutListFragment : Fragment(), WorkoutListener {
 
-    private lateinit var binding: FragmentWorkoutListBinding
+    private lateinit var _binding: FragmentWorkoutListBinding
+    private val binding get() = _binding
     private val viewModel by viewModel<WorkoutListViewModel>()
     private val adapter = WorkoutListAdapter(this)
     private var searchJob: Job? = null
+    private val navigator: WorkoutListNavigator by inject { parametersOf(findNavController()) }
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWorkoutListBinding.inflate(inflater, container, false)
+        _binding = FragmentWorkoutListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -50,6 +55,14 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
 
         initWorkerRecycle()
 
+        observeState()
+        viewModel.obtainEvent(WorkoutListEvent.Init)
+
+        initSearchBar()
+        setupChips()
+    }
+
+    private fun observeState() {
         viewModel.state.observe(viewLifecycleOwner, Observer { state ->
             when (state) {
                 is WorkoutListState.Loading -> binding.showLoading()
@@ -58,10 +71,6 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
                 is WorkoutListState.Error -> binding.showError(state.message)
             }
         })
-        viewModel.obtainEvent(WorkoutListEvent.Init)
-
-        initSearchBar()
-        setupChips()
     }
 
     private fun initWorkerRecycle() = with(binding.workouts) {
@@ -90,12 +99,12 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
         chipGroup.removeAllViews()
 
         WorkoutTypeUI.entries.forEach { type ->
-            val chip = layoutInflater.inflate(
-                R.layout.item_chip_filter, chipGroup, false
-            ) as Chip
-            chip.setText(type.text)
-            chip.isCheckable = true
-            chip.tag = type
+            val chipBinding = ItemChipFilterBinding.inflate(layoutInflater, chipGroup, false)
+            val chip = chipBinding.root.apply {
+                setText(type.text)
+                isCheckable = true
+                tag = type
+            }
             chipGroup.addView(chip)
         }
 
@@ -109,6 +118,11 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     }
 
     override fun onWorkoutCardClick(workout: WorkoutUI) {
-        Log.d(WorkoutListFragment::class.simpleName, workout.id.toString())
+        navigator.openWorkoutDetails(workout)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        searchJob = null
     }
 }
