@@ -37,10 +37,17 @@ class WorkoutDetailsFragment : Fragment() {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+        initBackButton()
         observeState()
         val workout = requireArguments().getParcelable<WorkoutUI>("workout")
         workout?.also {
             viewModel.obtainEvent(WorkoutDetailsEvent.Init(it))
+        }
+    }
+
+    private fun initBackButton() = with(binding) {
+        backButton.setOnClickListener {
+            requireActivity().onBackPressedDispatcher.onBackPressed()
         }
     }
 

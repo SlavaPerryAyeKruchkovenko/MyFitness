@@ -1,6 +1,19 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
+    <style name="WorkoutDetails.BackButton" parent="Widget.AppCompat.ImageButton">
+        <item name="android:layout_width">@dimen/back_button_size</item>
+        <item name="android:layout_height">@dimen/back_button_size</item>
+        <item name="android:layout_marginStart">@dimen/back_button_margin_start</item>
+        <item name="android:layout_marginTop">@dimen/back_button_margin_top</item>
+        <item name="android:background">@color/transparent</item>
+        <item name="tint">?attr/colorOnSurface</item>
+        <item name="android:contentDescription">@string/go_back</item>
+        <item name="android:scaleType">fitStart</item>
+        <item name="android:src">@drawable/ic_arrow_back</item>
+    </style>
+
+
     <style name="WorkoutDetails.Title" parent="Widget.AppCompat.TextView">
         <item name="android:textSize">24sp</item>
         <item name="android:textStyle">bold</item>

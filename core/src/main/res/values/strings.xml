@@ -5,4 +5,5 @@
     <string name="all">все</string>
     <string name="workout_type">Тип: %1$s</string>
     <string name="workout_duration">Длительность: %1$d минут</string>
+    <string name="go_back">go back</string>
 </resources>
