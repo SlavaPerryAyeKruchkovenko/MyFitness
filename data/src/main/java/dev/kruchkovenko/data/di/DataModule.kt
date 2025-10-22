@@ -1,5 +1,6 @@
 package dev.kruchkovenko.data.di
 
+import dev.kruchkovenko.core.utils.Constants
 import dev.kruchkovenko.data.mapper.WorkoutMapper
 import dev.kruchkovenko.data.mapper.WorkoutMapperImpl
 import dev.kruchkovenko.data.network.WorkoutApi
@@ -11,7 +12,7 @@ import retrofit2.Retrofit
 object DataModule {
     val dataModule = module {
         single<WorkoutMapper> {
-            WorkoutMapperImpl()
+            WorkoutMapperImpl(getProperty(Constants.BASE_URL))
         }
         single<WorkoutApi> { get<Retrofit>().create(WorkoutApi::class.java) }
         single<WorkoutRepository> {

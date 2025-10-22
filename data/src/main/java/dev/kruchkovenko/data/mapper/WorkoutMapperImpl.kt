@@ -6,7 +6,7 @@ import dev.kruchkovenko.domain.model.Video
 import dev.kruchkovenko.domain.model.Workout
 import dev.kruchkovenko.domain.model.WorkoutType
 
-class WorkoutMapperImpl : WorkoutMapper {
+class WorkoutMapperImpl(private val baseVideoUrl: String) : WorkoutMapper {
     override fun fromWorkoutResponseToWorkout(response: WorkoutResponse): Workout = with(response) {
         Workout(
             id = id,
@@ -21,7 +21,7 @@ class WorkoutMapperImpl : WorkoutMapper {
         Video(
             id = id,
             duration = duration,
-            link = link,
+            link = if (link.startsWith("http")) link else baseVideoUrl + link.removePrefix("/"),
         )
     }
 }
