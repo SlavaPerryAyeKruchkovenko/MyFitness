@@ -40,6 +40,7 @@ class WorkoutDetailsFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
         initBackButton()
         observeState()
+
         val workout = requireArguments().parsable<WorkoutUI>("workout")
         workout?.also {
             viewModel.obtainEvent(WorkoutDetailsEvent.Init(it))
