@@ -13,7 +13,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.chip.Chip
 import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.core.model.WorkoutUI
-import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
 import dev.kruchkovenko.workoutlist.databinding.ItemChipFilterBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
