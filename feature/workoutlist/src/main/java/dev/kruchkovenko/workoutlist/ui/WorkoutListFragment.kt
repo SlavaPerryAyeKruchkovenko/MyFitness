@@ -116,4 +116,9 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
     override fun onWorkoutCardClick(workout: WorkoutUI) {
         navigator.openWorkoutDetails(workout)
     }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        searchJob = null
+    }
 }
