@@ -15,6 +15,7 @@ import dev.kruchkovenko.core.model.WorkoutTypeUI
 import dev.kruchkovenko.core.model.WorkoutUI
 import dev.kruchkovenko.workoutlist.R
 import dev.kruchkovenko.workoutlist.databinding.FragmentWorkoutListBinding
+import dev.kruchkovenko.workoutlist.databinding.ItemChipFilterBinding
 import dev.kruchkovenko.workoutlist.model.WorkoutListEvent
 import dev.kruchkovenko.workoutlist.model.WorkoutListState
 import dev.kruchkovenko.workoutlist.navigation.WorkoutListNavigator
@@ -35,7 +36,8 @@ import org.koin.core.parameter.parametersOf
 
 class WorkoutListFragment : Fragment(), WorkoutListener {
 
-    private lateinit var binding: FragmentWorkoutListBinding
+    private lateinit var _binding: FragmentWorkoutListBinding
+    private val binding get() = _binding
     private val viewModel by viewModel<WorkoutListViewModel>()
     private val adapter = WorkoutListAdapter(this)
     private var searchJob: Job? = null
@@ -45,7 +47,7 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View {
-        binding = FragmentWorkoutListBinding.inflate(inflater, container, false)
+        _binding = FragmentWorkoutListBinding.inflate(inflater, container, false)
         return binding.root
     }
 
@@ -94,12 +96,12 @@ class WorkoutListFragment : Fragment(), WorkoutListener {
         chipGroup.removeAllViews()
 
         WorkoutTypeUI.entries.forEach { type ->
-            val chip = layoutInflater.inflate(
-                R.layout.item_chip_filter, chipGroup, false
-            ) as Chip
-            chip.setText(type.text)
-            chip.isCheckable = true
-            chip.tag = type
+            val chipBinding = ItemChipFilterBinding.inflate(layoutInflater, chipGroup, false)
+            val chip = chipBinding.root.apply {
+                setText(type.text)
+                isCheckable = true
+                tag = type
+            }
             chipGroup.addView(chip)
         }
 
