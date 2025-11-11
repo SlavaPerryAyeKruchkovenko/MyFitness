@@ -1,6 +1,5 @@
 package dev.kruchkovenko.workoutdetails.presentation
 
-import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.viewModelScope
 import dev.kruchkovenko.core.model.WorkoutUI
@@ -11,6 +10,8 @@ import dev.kruchkovenko.domain.usecase.`interface`.GetVideoUseCase
 import dev.kruchkovenko.workoutdetails.mapper.WorkoutMapper
 import dev.kruchkovenko.workoutdetails.model.WorkoutDetailsEvent
 import dev.kruchkovenko.workoutdetails.model.WorkoutDetailsState
+import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.StateFlow
 import kotlinx.coroutines.launch
 
 class WorkoutDetailsViewModel(
@@ -18,8 +19,8 @@ class WorkoutDetailsViewModel(
     private val mapper: WorkoutMapper,
     private val getVideoUseCase: GetVideoUseCase,
 ) : ViewModel(), EventHandler<WorkoutDetailsEvent> {
-    private val _state = MutableLiveData(baseState)
-    val state get() = _state
+    private val _state = MutableStateFlow(baseState)
+    val state: StateFlow<WorkoutDetailsState> get() = _state
 
     private val handler = ExceptionHandler.coroutineExceptionHandler()
 
