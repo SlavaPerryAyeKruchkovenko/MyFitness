@@ -8,7 +8,7 @@ import androidx.recyclerview.widget.RecyclerView
 import dev.kruchkovenko.core.extension.ContextExtension.dpToPx
 
 class VerticalSpaceItemDecoration(
-    @Dimension(unit = Dimension.DP) private val verticalSpaceHeight: Int,
+    @field:Dimension(unit = Dimension.DP) private val verticalSpaceHeight: Int,
     private val context: Context
 ) : RecyclerView.ItemDecoration() {
     override fun getItemOffsets(
